@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -45,8 +46,8 @@ public class MovieRepository {
     }
     public List<String> MoviesList(){
         List<String> list=new ArrayList<>();
-        for(String i : movieMap.keySet()){
-            list.add(i);
+        for(String movie : movieMap.keySet()){
+            list.add(movie);
         }
         return list;
     }
@@ -55,7 +56,9 @@ public class MovieRepository {
         if(directorMoviePair.containsKey(director)){
             movies = directorMoviePair.get(director);
             for(String movie : movies){
-                movieMap.remove(movie);
+                if(movieMap.containsKey(movie)) {
+                    movieMap.remove(movie);
+                }
             }
             directorMoviePair.remove(director);
         }
@@ -64,7 +67,7 @@ public class MovieRepository {
         }
     }
     public void deleteAllDirector(){
-        ArrayList<String> movies=new ArrayList<>();
+        HashSet<String> movies=new HashSet<>();
         for(String director : directorMoviePair.keySet()){
             for(String movie : directorMoviePair.get(director)){
                 movies.add(movie);
