@@ -29,6 +29,7 @@ public class Movie {
     public void setImdbRating(double imdbRating) {
         this.imdbRating = imdbRating;
     }
+    //add
 
     public void setDurationInMinutes(int durationInMinutes){
         this.durationInMinutes = durationInMinutes;
